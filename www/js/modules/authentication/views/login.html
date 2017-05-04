@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default" ng-controller="LoginController">
+  <div class="container-fluid">
+    <div class="navbar-header">
+     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Stone Mining</a>
+    </div>
+      <div class="collapse navbar-collapse" id="myNavbar" >
+    <ul class="nav navbar-nav navbar-right">
+<!--    	  <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a></li>
+      <li><a ng-if="!currentUser" href="#!/login/"><b>Login</b></a></li>
+      <li><a ng-if="!currentUser" href="#!/signup/"><b>Sign Up</b></a></li> -->
+       <li><a href="#!/login/"><b>Login</b></a></li>
+      <li><a href="#!/signup/"><b>Sign Up</b></a></li>
+      
+    </ul>
+    </div>
+  </div>
+</nav>
+
+<form name="form" ng-submit="login()" role="form">
+  <div class="imgcontainer">
+   <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
+  </div>
+<div ng-show="error" class="alert alert-danger">{{error}}</div>
+<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+<div class="alert alert-danger" ng-if="cor_online_status_string!='online'"> Cor Application is {{cor_online_status_string}}</div>
+<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'">The service might be temporarily down. Please try again, Sorry for the trouble. </div>
+  <div class="container">
+    <label><b>Username</b></label>
+   <input type="text" name="username" id="username" class="form-control" ng-model="username" required />
+        <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
+
+    <label><b>Password</b></label>
+   <input type="password" name="password" id="password" class="form-control" ng-model="password" required />
+        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
+        
+    
+    
+  </div>
+
+  <div class="container" style="background-color:#724884">
+  <button class="btn btn-primary" type="submit" ng-disabled="form.$invalid || dataLoading">Login</button>
+  <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+  
+    <span class="psw"> <a href="#" style="color: white;">Forgot password?</a></span>
+  </div>
+</form>

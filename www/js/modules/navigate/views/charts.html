@@ -1,0 +1,88 @@
+<nav class="navbar navbar-default navbar-blend" ng-controller="navigateController" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stone Mining</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a>
+                </li>
+				<li><a href="#!/login/"><b>Log Out</b></a></li>
+              <!--   <li><a ng-if="!currentUser" href="#login"><b>Login</b></a>
+                </li>
+                <li><a ng-if="!currentUser" href="#signup"><b>Sign Up</b></a>
+                </li> -->
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container"  style="overflow:auto;width: 100%;height: 500px;">
+<button navback><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+
+    <div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">	
+
+   <label for="daterange3" class="control-label">Select the Date range</label>
+   <div class="input-group date"> 
+   		<span class="input-group-addon" style="cursor: pointer"><i class="fa fa-calendar"></i></span>
+    	<input date-range-picker="" id="daterange" name="daterange" class="form-control date-picker ng-pristine ng-valid ng-isolate-scope ng-touched selectbox pull-right" type="text" size="12"  ng-model="date" options="opts" required="">    	
+        <span ng-show="form.daterange.$dirty && form.daterange.$error.required" class="help-block">Date Range is required</span>
+    </div>
+    <br>
+   <button type="submit" class="btn btn-primary" ng-click="getstoneChartDetails()">Apply</button>
+   <button type="button" class="btn" >Cancel</button>
+
+    
+    </div>
+    
+   <div class="col-sm-2"></div>
+</div>
+<div class="col-sm-8">	
+
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="dueDate">Select Week</label>
+                                    <div class="col-sm-7">
+                                    	   <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" datepicker-mobile="true" selector="form-control">
+                                                <div class="input-group date">
+                                                    <input class="form-control" name="dueDate" id="dueDate" ng-model="dueDate" placeholder="Select Week" required/>
+                                                    <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+                                                </div>
+                                            </datepicker>
+                                                									    
+    		     					</div>		     					
+    		     					
+                                </div>
+    <br>
+   <button type="submit" class="btn btn-primary" ng-click="getstoneChartDetails()">Apply</button>
+   <button type="button" class="btn" >Cancel</button>
+
+    
+    </div>
+    
+   <div class="col-sm-2"></div>
+</div>
+
+        <div class="row"><br><br></div>
+
+        <div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8 text-center">	
+	<div class="text-center" ng-if="stoneChart && category" ng-show="!category.length">No Data Found</div>
+    <div ng-if="stoneChart && category" ng-show="category.length > 0">
+      <highchart id="chart1" config="chartConfig" ></highchart>
+    </div>
+      <div class="col-sm-2"></div>
+    </div>
+</div>
+</div>

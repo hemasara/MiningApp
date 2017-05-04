@@ -1,0 +1,149 @@
+<nav class="navbar navbar-default navbar-blend" ng-controller="navigateController" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stone Mining</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a>
+                </li>
+				<li><a href="#!/login/"><b>Log Out</b></a></li>
+              <!--   <li><a ng-if="!currentUser" href="#login"><b>Login</b></a>
+                </li>
+                <li><a ng-if="!currentUser" href="#signup"><b>Sign Up</b></a>
+                </li> -->
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div ui-yield-to="modals"></div>
+<div class="container" ng-init="getStoneDetails();" style="overflow:auto;width: 100%;height: 500px;">
+<button navback><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+     <div>
+   	 
+      <table class="table table-striped" at-table at-paginated at-list="stone" at-config="config">
+      <caption> 
+      	<span class="align-left"><strong>Stone Details</strong></span>
+      </caption>
+  <thead></thead>
+  <tbody>
+    <tr>
+      <td at-implicit at-sortable at-title="Type" at-attribute="type" width="200" at-initial-sorting="asc"></td>
+      <td at-implicit at-sortable at-title="Width" at-attribute="width" width="150"></td>
+      <td at-implicit at-sortable at-title="Height" at-attribute="height"  width="150"></td>
+      <td at-implicit at-sortable at-title="Length" at-attribute="length"  width="150"></td>      
+      <td at-implicit at-sortable at-title="Colour" at-attribute="colour" width="200"></td>
+      <td at-implicit at-sortable at-title="Quantity" at-attribute="quantity" width="200"></td>
+    </tr>
+  </tbody>
+</table>
+
+<at-pagination at-list="stone" at-config="config"></at-pagination>
+    </div>
+    
+        <div ui-content-for="modals">
+        <div class="modal1" ui-if="event2" ui-state="event2">
+            <div id="stonedetails" class="" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+						 <div class="modal-header text-center" style="background-color:#724884;color: white;">
+                            <button type="button" ui-turn-off="event2" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Stone Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <br>
+                            <br>
+							<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+							<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+							<pre>{{stonedetails}}</pre>
+                            <form name="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="stonewidth">Stone Width (mm):</label>
+                                    <div class="col-sm-7">
+                                        <input type="number" name="stonewidth" class="form-control" id="stonewidth" ng-model="stonedetails.width" required>
+                                        <span ng-show="form.stonewidth.$dirty && form.stonewidth.$error.required" class="help-block">Stone Width is required</span>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="stoneheight">Stone Height (mm):</label>
+                                    <div class="col-sm-7">
+                                        <input type="number" name="stoneheight" class="form-control" id="stoneheight" ng-model="stonedetails.height" required>
+                                        <span ng-show="form.stoneheight.$dirty && form.stoneheight.$error.required" class="help-block">Stone Height is required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="stonelength">Stone Length (mm):</label>
+                                    <div class="col-sm-7">
+                                        <input type="number" name="stonelength" class="form-control" id="stonelength" ng-model="stonedetails.length" required>
+                                        <span ng-show="form.stonelength.$dirty && form.stonelength.$error.required" class="help-block">Stone Length is required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="stonetype">Stone Type:</label>
+                                    <div class="col-sm-7">
+                                    <!--     <input type="text" name="stonetype" class="form-control" id="stonetype" ng-model="stonedetails.type" required>-->
+										 <select ng-model="stonedetails.stoneTypeId" id="stonetype" name="stoneTypeId" ng-options="x.stoneTypeId as x.stoneType for x in stoneTypes" required>
+   					<option value=''>- Select -</option></select>
+                                        <span ng-show="form.stonetype.$dirty && form.stonetype.$error.required" class="help-block">Stone Type is required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="stonecolour">Stone Colour:</label>
+                                    <div class="col-sm-7">
+                                     <!--   <input type="text" name="stonecolour" class="form-control" id="stonecolour" ng-model="stonedetails.colour" required>-->
+									 <select ng-model="stonedetails.stoneColourId" id="stonecolour" name="stonecolour" ng-options="x.colourId as x.colour for x in colours" required>
+   					<option value=''>- Select -</option></select>
+                                        <span ng-show="form.stonecolour.$dirty && form.stonecolour.$error.required" class="help-block">Stone Colour is required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="quantity">Quantity:</label>
+                                    <div class="col-sm-7">
+                                        <input type="number" name="quantity" class="form-control" id="quantity" ng-model="stonedetails.quantity" required>
+                                        <span ng-show="form.quantity.$dirty && form.quantity.$error.required" class="help-block">Quantity is required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="slabNo">No of Slabs:</label>
+                                    <div class="col-sm-7">
+                                        <input name="slapNo" class="form-control" id="slabNo" value="{{stonedetails.length * stonedetails.width /144 | number:2}}" readonly="" ng-if="stonedetails.length && stonedetails.width" />                        
+                                    </div>
+                                </div>
+
+
+                                <center>
+                                    <button ng-click="stoneDetailsSave(stonedetails)" ng-disabled="form.$invalid || dataLoading" class="btn btn-custom"><b>Submit</b>
+                                    </button>
+                                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </center>
+                            </form>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button ui-turn-off="event2" class="btn btn-default">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    	<div style="position:absolute;bottom:5px;right:50px;margin:0;">
+                <button class="fa fa-plus-circle fa-5x" ui-turn-on="event2" style="color:#724884">
+                </button>
+        </div>  
+
+</div>

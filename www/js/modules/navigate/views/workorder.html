@@ -1,0 +1,151 @@
+<nav class="navbar navbar-default navbar-blend" ng-controller="navigateController" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stone Mining</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a>
+                </li>
+				<li><a href="#!/login/"><b>Log Out</b></a></li>
+              <!--   <li><a ng-if="!currentUser" href="#login"><b>Login</b></a>
+                </li>
+                <li><a ng-if="!currentUser" href="#signup"><b>Sign Up</b></a>
+                </li> -->
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div ui-yield-to="modals"></div>
+<div class="container" ng-init="getWorkOrderDetails();" style="overflow:auto;width: 100%;height: 500px;">
+<button navback class="fa fa-arrow-left" aria-hidden="true"></button>
+<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+     <div>
+   	 
+      <table class="table table-striped" at-table at-paginated at-list="workorder" at-config="config">
+      <caption> 
+      	<span class="align-left"><strong>Work Order Details</strong></span>
+      </caption>
+  <thead></thead>
+  <tbody>
+    <tr>
+      <td at-implicit at-sortable at-title="Employee Name" at-attribute="empName" width="200" at-initial-sorting="asc"></td>
+      <td at-implicit at-sortable at-title="Time In" at-attribute="timeIN"  width="150"></td>
+      <td at-implicit at-sortable at-title="Time Out" at-attribute="timeOUT"  width="150"></td>
+      <td at-implicit at-sortable at-title="Worked hours" at-attribute="workedHours" width="200"></td>
+    </tr>
+  </tbody>
+</table>
+
+<at-pagination at-list="workorder" at-config="config"></at-pagination>
+    </div>
+    
+        <div ui-content-for="modals">
+        <div class="modal1" ui-if="event1" ui-state="event1">
+            <div id="workorder" class="" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header text-center" style="background-color:#724884;color: white;">
+                            <button type="button" ui-turn-off="event1" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Work Order</h4>
+                        </div>
+                        <div class="modal-body">
+                            <br>
+                            <br>
+							<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+							<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+                            <pre>{{wo}}</pre>
+                            <form name="form" class="form-horizontal">
+                            <!--<div class="form-group">
+                                    <label class="control-label col-sm-3" for="empName">Employee Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="empName" class="form-control" id="empName" ng-model="wo.empName" required>
+                                        <span ng-show="form.empName.$dirty && form.empName.$error.required" class="help-block">Employee name is required</span>
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="empName">Employee Name:</label>
+                                    <div class="col-sm-7">                                        
+                                        <input name="empName" class="form-control" id="empName" value={{currentUser}} readonly="" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="timeIN">Time IN:</label>
+                                    <div class="col-sm-7">
+                                    	   <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" datepicker-mobile="true" selector="form-control">
+                                                <div class="input-group date">
+                                                    <input class="form-control" name="dtIN" id="dtIN" ng-model="wo.dtIN" placeholder="Select date" required/>
+                                                    <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+                                                    <span ng-show="form.dtIN.$dirty && form.dtIN.$error.required" class="help-block">Date for Time-in is required</span>
+                                                </div>
+                                            </datepicker>
+                                            <div class="input-group date">
+    									 			<input class="form-control" name="tmIN" id="tmIN" ng-model="wo.tmIN" placeholder="Select the IN time" data-lng-clockpicker data-lng-clockpicker-options='options' required/>
+    									 			<span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-clock-o"></i></span>
+    									 			<span ng-show="form.tmIN.$dirty && form.tmIN.$error.required" class="help-block">Time-in is required</span>
+    									    </div>    									    
+    		     					</div>		     					
+    		     					
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="timeOUT">Time Out:</label>
+                                    <div class="col-sm-7">
+                                    	   <datepicker date-format="yyyy-MM-dd" button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" datepicker-mobile="true" selector="form-control">
+                                                <div class="input-group date">
+                                                    <input class="form-control" name="dtOUT" id="dtOUT" ng-model="wo.dtOUT" placeholder="Select date" required/>
+                                                    <span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-calendar"></i></span>
+                                                    <span ng-show="form.dtOUT.$dirty && form.dtOUT.$error.required" class="help-block">Date for Time-Out is required</span>
+                                                </div>
+                                            </datepicker>
+                                            <div class="input-group date">
+    									 			<input class="form-control" name="tmOUT" id="tmOUT" ng-model="wo.tmOUT" placeholder="Select the out time" data-lng-clockpicker data-lng-clockpicker-options='options' required/>
+    									 			<span class="input-group-addon" style="cursor: pointer"><i class="fa fa-lg fa-clock-o"></i></span>
+    									 			<span ng-show="form.tmOUT.$dirty && form.tmOUT.$error.required" class="help-block">Time-Out is required</span>
+    									    </div>    									    
+    		     					</div>		     					
+    		     					
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="workedHours">Worked Hours:</label>
+                                    <div class="col-sm-7">                                        
+                                        <input name="workedHours" class="form-control" id="workedHours" value={{getTimeDiff(wo)}} readonly="" ng-if="wo.dtIN && wo.tmIN && wo.dtOUT && wo.tmOUT" />
+                                        <span ng-show="form.workedHours.$dirty && form.workedHours.$error.required" class="help-block">Worked is required</span>
+                                    </div>
+                                </div>
+
+
+                                <center>
+                                    <button type="submit" ng-click="workorderCreate(wo)" ng-disabled="form.$invalid || dataLoading" class="btn btn-custom"><b>Submit</b>
+                                    </button>
+                                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </center>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button ui-turn-off="event1" class="btn btn-default">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+    <div style="position:absolute;bottom:5px;right:50px;margin:0;">
+                <button class="fa fa-plus-circle fa-5x" ui-turn-on="event1" style="color:#724884"><!-- 
+                    <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i> -->
+                   <!--  <br>
+                    <span style="font-size: 20px;"><b>&nbsp;&nbsp;Work Order&nbsp;&nbsp;</b></span> -->
+                </button>
+            </div>  
+
+</div>

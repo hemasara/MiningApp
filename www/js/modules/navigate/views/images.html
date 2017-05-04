@@ -1,0 +1,62 @@
+<nav class="navbar navbar-default navbar-blend" ng-controller="navigateController" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stone Mining</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a>
+                </li>
+				<li><a href="#!/login/"><b>Log Out</b></a></li>
+              <!--   <li><a ng-if="!currentUser" href="#login"><b>Login</b></a>
+                </li>
+                <li><a ng-if="!currentUser" href="#signup"><b>Sign Up</b></a>
+                </li> -->
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" ng-init="getFile();" style="overflow:auto;width: 100%;height: 500px;" >
+<button navback><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+   	<!--  <div > -->
+		<!-- <div class="col-sm-12" ng-repeat="row in images">
+     		 <div class="col-sm-4" ng-repeat="img in row"> -->
+     	<div ng-repeat="img in images">
+     		<div style="float: left;">
+        	<img ng-src="data:image/JPEG;base64,{{img.image}}" class="img-responsive" style="margin:0 auto; width:128px; height:128px;" ng-if="img.image"> <br>
+                              <!--   <p style="text-align: center;"> {{img.imgeName}}</p> -->
+            </div>
+     		<!-- </div> -->
+ 		</div>
+<span class="btn btn-default btn-file" style="position:absolute;bottom:5px;right:50px;margin:0;">
+<i class="fa fa-plus-circle fa-5x" aria-hidden="true" style="color:#724884;"></i>
+<input type="file" id="file-input" ngf-select="upload($file)" ng-model="file" name="file" 
+		ngf-pattern="'.jpg,.jpeg,.png'" required >
+    <!--    ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="650" ngf-min-width="900" 
+        ngf-resize="{width: 1000, height: 650}" --> 
+</input>  
+</span>
+
+<!--     </div> -->
+<!--  <div style="position:absolute;bottom:5px;right:50px;margin:0;">
+<label for="file-input">
+        <i class="fa fa-plus-circle fa-5x" aria-hidden="true" style="color:green;"></i>
+    </label> 
+    	<img class="img-thumbnail" ngf-src="file" ngf-resize="{width: 100, height: 100, quality: 0.9}" ngf-no-object-url="true" > 
+<input type="file" id="file-input" class="btn btn-primary button" ngf-select="upload($file)" ng-model="file" name="file" 
+		ngf-pattern="'.jpg,.jpeg,.png'"
+        ngf-accept="'image/*'" ngf-max-size="2MB" ngf-min-height="650" ngf-min-width="900" 
+        ngf-resize="{width: 1000, height: 650}" required style="display:none;">
+</input>  
+</div> -->
+
+</div>

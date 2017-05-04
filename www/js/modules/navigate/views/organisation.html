@@ -1,0 +1,134 @@
+<nav class="navbar navbar-default navbar-blend" ng-controller="navigateController" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stone Mining</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a>
+                </li>
+				<li><a href="#!/login/"><b>Log Out</b></a></li>
+              	<!--<li><a ng-if="!currentUser" href="#login"><b>Login</b></a>
+                </li>
+                <li><a ng-if="!currentUser" href="#signup"><b>Sign Up</b></a>
+                </li> -->
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div ui-yield-to="modals"></div>
+<div class="container" ng-init="getOrganisationDetails();" style="overflow:auto;width: 100%;height: 500px;">
+<button back class="fa fa-arrow-left" aria-hidden="true"></button>
+<div class="alert alert-danger" ng-if="online_status_string != 'online'"> Application is {{online_status_string}}</div>
+<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+
+	<div>   	 
+		<table class="table table-striped" at-table at-paginated at-list="orgDet" at-config="config">
+		<caption> 
+			<span class="align-left"><strong>Organisation Details</strong></span>
+		</caption>
+		<thead></thead>
+		<tbody>
+			<tr>
+				<td at-implicit at-sortable at-title="Organisation Name" at-attribute="organisationName" width="200" at-initial-sorting="asc"></td>
+				<td at-implicit at-sortable at-title="Organisation Type" at-attribute="organisationType" width="200"></td>
+			    <td at-implicit at-sortable at-title="Contact Email" at-attribute="contactEmail"  width="150"></td>
+			    <td at-implicit at-sortable at-title="Organisation Contact No" at-attribute="organisationcontactNo" width="200"></td>
+			    <td at-implicit at-sortable at-title="Location" at-attribute="location"  width="150"></td>
+			    <td at-implicit at-sortable at-title="Address" at-attribute="address"  width="150"></td>
+	   		</tr>
+	  	</tbody>
+		</table>
+		<at-pagination at-list="orgDet" at-config="config"></at-pagination>
+	</div> 
+    
+        <div ui-content-for="modals">
+        <div class="modal1" ui-if="event7" ui-state="event7">
+            <div id="workorder" class="" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header text-center" style="background-color:#724884;color: white;">
+                            <button type="button" ui-turn-off="event7" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Organization Form</h4>
+                        </div>
+                        <div class="modal-body">
+                          
+                            <form name="form" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="organisationName">Organization Name:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="organisationName" class="form-control" id="organisationName" ng-model="organisation.organisationName" required>
+                                        <span ng-show="form.organizationName.$dirty && form.organizationName.$error.required" class="help-block">Organization Name is required</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="organizationType">Organization Type:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" name="organisationType" class="form-control" id="organisationType" ng-model="organisation.organisationType" required>
+                                        <span ng-show="form.organisationType.$dirty && form.organisationType.$error.required" class="help-block">Organisation Name is required</span>
+                                    </div>
+                                </div>
+								<div class="form-group">
+                                    <label class="control-label col-sm-3" for="contactEmail">Contact Email</label>
+                                     <div class="col-sm-7">
+									    <input type="email" name="contactEmail" class="form-control" id="contactEmail" ng-model="organisation.contactEmail" required>
+									    <span ng-show="form.contactEmail.$dirty && form.contactEmail.$error.required" class="help-block">Email is required</span>
+								    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="organisationcontactNo">Contact No:</label>
+                                     <div class="col-sm-7">
+										<input type="number" name="organisationcontactNo"  class="form-control" id="organisationcontactNo" ng-model="organisation.organisationcontactNo" required>
+										<span ng-show="form.organisationcontactNo.$dirty && form.organisationcontactNo.$error.required" class="help-block">Contact No is required</span> 
+								    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="location">Location:</label>
+                                    <div class="col-sm-7">
+		    							<input type="text" name="location" class="form-control" id="location" ng-model="organisation.location" required>
+		    							<span ng-show="form.location.$dirty && form.location.$error.required" class="help-block">Location is required</span>
+	   							 	</div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="address">Address:</label>
+                                    <div class="col-sm-7">
+		    							<textarea  name="address1" class="form-control" id="address" ng-model="organisation.address" required maxlength="255"/>
+		    							<span ng-show="form.address.$dirty && form.address.$error.required" class="help-block">Contact Address is required</span>
+	   							 	</div>		     					
+    		     					
+                                </div>
+                                <center>
+                                    <button type="submit" ng-click="orgRegister(organisation)" ng-disabled="form.$invalid || dataLoading" class="btn btn-custom"><b>Submit</b>
+                                    </button>
+                                    <img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </center>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button ui-turn-off="event7" class="btn btn-default">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        
+    <div style="position:absolute;bottom:5px;right:50px;margin:0;">
+                <button class="fa fa-plus-circle fa-5x" ui-turn-on="event7" style="color:#724884"><!-- 
+                    <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i> -->
+                   <!--  <br>
+                    <span style="font-size: 20px;"><b>&nbsp;&nbsp;Work Order&nbsp;&nbsp;</b></span> -->
+                </button>
+            </div>  
+
+</div>

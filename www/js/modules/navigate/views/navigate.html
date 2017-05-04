@@ -1,0 +1,95 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-blend" ng-controller="navigateController" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stone Mining</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a>
+                </li>
+				<li><a href="#!/login/"><b>Log Out</b></a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container" id="mainC">
+<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+    <div class="row text-center" ng-if="currentRole == 'User'">
+        <div class="col-sm-12">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+			<div class="events">
+                    <button ng-click="workOrder()" style="width:100%;">
+                        <img src="./img/workorder.png" style="width:100px;height:100px;"/>
+                        <br> <span style="font-size: 14px;"><b>Work Order</b></span>
+                    </button>
+                </div>
+				</div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+				<div class="events">
+                     <button ng-click="stoneDetails()" style="width:100%;">
+                        <img src="./img/stonedetails.jpg" style="width:100px;height:100px;"/>
+						<br> <span style="font-size: 14px;"><b>Stone Details</b></span>
+                    </button>
+                </div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+				<div class="events">
+                    <button ng-click="imageDetails()" style="width:100%;">
+                        <img src="./img/images.jpg" style="width:100px;height:100px;"/>
+                        <br> <span style="font-size: 14px;"><b>Share Images</b></span>
+                    </button>
+                </div>
+				</div>
+		</div>
+	</div>
+
+        <div class="row text-center" ng-if="currentRole == 'Viewer'">    
+            <div class="col-sm-12">				
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+				<div class="events">
+                    <button ng-click="charts()" style="width:100%;">
+                        <img src="./img/charts.jpg" style="width:100px;height:100px;"/>
+						<br> <span style="font-size: 14px;"><b>Charts</b></span>
+                    </button>
+                </div> 
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2">
+				 <div class="events">
+                    <button ng-click="reports()"  style="width:100%;">
+                        <img src="./img/reports.png" style="width:100px;height:100px;"/>
+                        <br> <span style="font-size: 14px;"><b>Reports</b></span>
+                    </button>
+                </div>
+				</div>				
+            </div>
+		</div>
+
+		<div class="row text-center" ng-if="currentRole == 'Admin'">
+            <div class="col-sm-12">
+                <div class="col-xs-6 col-sm-3 col-md-3 col-lg-2" >
+				<div class="events">
+					<button ng-click="OrgPath()" style="width:100%;">
+                        <img src="./img/organization.jpg" style="width:100px;height:100px;"/>
+                        <br> <span style="font-size: 14px;"><b>Organization</b></span>
+                    </button>
+                </div>
+				</div>
+				<div class="col-xs-6 col-sm-3 col-md-3 col-lg-2" >  
+				<div class="events">				 
+					 <button ng-click="approvalPath()" style="width:100%;">
+                        <img src="./img/approval.jpg" style="width:100px;height:100px;"/>
+                        <br> <span style="font-size: 14px;"><b>Appr Status</b></span>
+                    </button>
+                 </div>
+				 </div>
+            </div>
+		</div>
+
+    
+</div>

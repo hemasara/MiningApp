@@ -1,0 +1,102 @@
+<nav class="navbar navbar-default navbar-blend" ng-controller="navigateController" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Stone Mining</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a ng-if="currentUser"><b>Welcome {{currentUser}}</b></a>
+                </li>
+				<li><a href="#!/login/"><b>Log Out</b></a></li>
+              <!--   <li><a ng-if="!currentUser" href="#login"><b>Login</b></a>
+                </li>
+                <li><a ng-if="!currentUser" href="#signup"><b>Sign Up</b></a>
+                </li> -->
+
+            </ul>
+        </div>
+    </div>
+</nav>
+<div ui-yield-to="modals"></div>
+<div class="container" ng-init="getApproveDetails();" style="overflow:auto;width: 100%;height: 500px;">
+<button back class="fa fa-arrow-left" aria-hidden="true"></button>
+<div class="alert alert-danger" ng-if="online_status_string!='online'"> Application is {{online_status_string}}</div>
+<div class="alert alert-danger" ng-if="http_online_status_string ==='offline'"> Service is down. Please try again, Sorry for the trouble. </div>
+
+<div>   	 
+	<table class="table table-striped" id="userAppTableId">
+	<caption> 
+		<span class="align-left"><strong>Pending User Approvel List</strong></span>
+	</caption>	
+	<thead>
+	<div><span style="color: red;"> * mandatory fields</span></div>
+	<tr>
+			<th>S.No</th>
+   			<th>UserName</th>
+   			<th>Email</th>
+   			<th>Phone No</th>
+   			<th>Organization<span style="color: red;">*</span></th>
+   			<th>Roles<span style="color: red;">*</span></td>
+   			<th>Status</td>
+   			<!-- Check All <br/><label><input type="checkbox" ng-model="master"></label> -->
+   				<th><input type="submit" id="orgMapSubmit" value="Submit" ng-click="CheckOrg();"/>
+   			</th>
+   		</tr>  	
+	</thead>
+	<tbody>
+   		<!-- <tr ng-repeat="user in approveDet">
+   			<td>{{user.userId}}</td>
+   			<td>{{user.userName}}</td>
+   			<td>{{user.email}}</td>
+   			<td>{{user.phoneNumber}}</td>
+   			<td>
+   				<select ng-model="user.orgId" id="orgMap-{{user.userId}}" ng-options="k*1 as v for (k,v) in user.orgMap">
+   					<option value=''>- Select -</option>
+   				</select> 
+   			</td>
+			<td><select ng-model="user.rolesId" id="roles-{{user.userId}}" ng-options="k*1 as v for (k,v) in user.rolesMap"><option value=''>- Select -</option></select></td>
+			<td>
+				<select ng-model="user.userStatus" id="userStatus-{{user.userId}}" ng-options="k*1 as v for (k,v) in user.userStatus"><option value=''>- Select -</option></select>
+				<select ng-change="" ng-model="user.userStatus" id="userStatus-{{user.userId}}">
+					<option value=''>- Select -</option>
+					<option value='Active'>Active</option>
+					<option value='Inactive'>Inactive</option>
+					<option value='Pending'>Pending</option>
+				</select>
+			</td>
+			<td>
+			<input type="checkbox" id="approveCheck-{{user.userId}}" class="approveChk" name="listInfo[{{$index}}].userId" ></td>
+   		</tr> -->
+   		<tr ng-repeat="user in approveDet">
+   			<td>{{$index+1}}</td>
+   			<td>{{user.userName}}</td>
+   			<td>{{user.email}}</td>
+   			<td>{{user.phoneNumber}}</td>
+   			<td>
+   				<select ng-model="user.orgId" id="orgMap-{{user.userId}}" ng-options="x.organisationId as x.organisationName for x in orgList">
+   					<option value=''>- Select -</option>
+   				</select> 
+   			</td>
+			<td><select ng-model="user.rolesId" id="roles-{{user.userId}}" ng-options="y.userRolesId as y.userRole for y in userRolesList"><option value=''>- Select -</option></select></td>
+			<td>
+				<select ng-model="user.statusId" id="userStatus-{{user.userId}}" ng-options="z.statusId as z.status for z in statusList"><option value=''>- Select -</option></select>
+				<!-- <select ng-change="" ng-model="user.userStatus" id="userStatus-{{user.userId}}">
+					<option value=''>- Select -</option>
+					<option value='Active'>Active</option>
+					<option value='Inactive'>Inactive</option>
+					<option value='Pending'>Pending</option>
+				</select> -->
+			</td>
+			<td>
+			<input type="checkbox" id="approveCheck-{{user.userId}}" class="approveChk" onclick="preCheckbox(this)" value="{{user.userId}}" ></td>
+   		</tr>
+  	</tbody>
+	</table>
+	
+</div>    
+</div>
