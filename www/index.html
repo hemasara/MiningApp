@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html ng-app="BasicHttpAuthExample">
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+		-->
+		<meta http-equiv="Content-Security-Policy" content="default-src * gap: ws: https://ssl.gstatic.com;style-src * 'unsafe-inline' 'self' data: blob:;script-src * 'unsafe-inline' 'unsafe-eval' data: blob:;img-src * data: 'unsafe-inline' 'self' content:;fmedia-src mediastream;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <!--<link rel="stylesheet" type="text/css" href="css/index.css">-->
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="stylesheet" href="css/mobile-angular-ui-base.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.css">    
+    <link rel="stylesheet" href="css/bootstrap.min.css">   
+    <link rel="stylesheet" href="css/style.css"> 
+    
+    <link rel="stylesheet" href="css/angularjs-datetime-picker.css">
+    <link rel="stylesheet" href="css/angular-datepicker.css">
+    <link rel="stylesheet" href="css/angular-clockpicker.css">
+    <link rel="stylesheet" href="css/jquery-clockpicker.css">
+	<link rel="stylesheet" href="css/daterangepicker.css">
+	<link rel="stylesheet" href="css/highcharts-ng.css">
+	
+<style>
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+</style>
+<!--
+<script>
+document.addEventListener('deviceready', function() {
+  window.sqlitePlugin.echoTest(function() {
+    alert('ECHO test OK');
+  });
+});
+</script>
+-->
+ <title>Stone Mining</title>
+    </head>
+    <body>
+        <div> <ng-view></ng-view></div>
+		
+		<script src="js/jquery.min.js"></script>
+		<script src="js/moment.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular.js"></script>
+		<!-- <script src="js/ionic.bundle.js"></script> -->
+		<script src="js/angular-route.js"></script>
+		<script src="js/angular-cookies.js"></script>
+		<script src="js/angular-resource.js"></script>
+		<script src="js/ngStorage.js"></script>
+		<script src="js/angular-messages.js"></script>
+		<script src="js/angular-local-storage.js"></script>
+		<script src="js/mobile-angular-ui.min.js"></script>
+		<script src="js/angular-file-upload.js"></script>
+		<script src="js/ng-file-upload-shim.js"></script>
+		<script src="js/ng-file-upload.js"></script>
+		<script src="js/upload.js"></script>
+		<script src="js/highcharts-ng.js"></script>
+		<script src="js/highstock.src.js"></script>
+		<script src="js/angularjs-datetime-picker.js"></script>
+		<script src="js/angular-datepicker.js"></script>   	
+		<script src="js/angular-moment.js"></script> 
+		<script src="js/angular-clockpicker.js"></script>
+		<script src="js/jquery-clockpicker.js"></script>
+		<script src="js/re-tree.js"></script>
+		<script src="js/ng-device-detector.js"></script>
+		<script src="js/angular-table.js"></script> 
+		<script src="js/angular-socialshare.js"></script>
+		<script src="js/daterangepicker.js"></script> 
+		<script src="js/angular-daterangepicker.js"></script>
+		<script src="js/alasql.js"></script>
+		<script src="js/Chart.js"></script>
+		<script src="js/angular-chart.js"></script>
+
+		<script src="js/ng-cordova.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		
+
+		<script src="js/scripts/app.js"></script>
+		<script src="js/modules/authentication/services.js"></script>
+		<script src="js/modules/authentication/controllers.js"></script>
+		<script src="js/modules/home/controllers/homeControllers.js"></script>
+		<script src="js/modules/navigate/controllers/navigateControllers.js"></script>
+    </body>
+</html>

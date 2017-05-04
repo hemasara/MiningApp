@@ -1,0 +1,60 @@
+
+<div class="col-sm-3">
+<pre>{{register}}</pre>
+</div>
+<div class="col-sm-6">
+</br>
+<div class="panel panel-info">
+ <div class="panel-heading text-center" style="background-color:#1ABC9C; color: white"> <b>Registration Form</b>  </div>
+<form name = "form" class="form-horizontal" action="http://10.30.53.33:8086/mining/ms/register" method="POST">
+	<div class="form-group">
+    <label class="control-label col-sm-3" for="uName">User Name:</label>
+    <div class="col-sm-7">
+    <input type="text" name="uName" class="form-control" id="uName" required>
+    <span ng-show="form.uName.$dirty && form.uName.$error.required" class="help-block">User Name is required</span>
+    </div>
+    
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="pwd">Password:</label>
+    <div class="col-sm-7">
+    <input type="password" name="pwd" class="form-control" id="pwd" required>
+    <span ng-show="form.pwd.$dirty && form.pwd.$error.required" class="help-block">Password is required</span>
+    </div>
+  </div>
+  	<div class="form-group">
+    <label class="control-label col-sm-3" for="email">Email address:</label>
+    <div class="col-sm-7">
+    <input type="email" name="email" class="form-control" id="email" required>
+    <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">Email Id is required</span>
+    </div>
+  </div>
+  	<div class="form-group">
+    <label class="control-label col-sm-3" for="phnNo">Phone No:</label>
+    <div class="col-sm-7">
+    <input type="number" name="phnNo"  class="form-control" id="phnNo"  required>
+   <span ng-show="form.phnNo.$dirty && form.phnNo.$error.required" class="help-block">Phone No is required</span> 
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-3" for="role">Role:</label>
+    <div class="col-sm-7">
+    <select class="form-control" name="role"  id="role"  required>
+    	<option>---Select---</option>
+     	<option>Admin</option>
+     	<option>Employee</option>
+     	<option>User</option>
+    </select>
+    <span ng-show="form.role.$dirty && form.role.$error.required" class="help-block">Role is required</span>
+    </div>
+  </div>
+  
+  <!-- <center><button ng-click="registration(register)" ng-disabled="form.$invalid || dataLoading" class="btn btn-custom"><b>Submit</b></button>
+  	<img ng-if="dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>
+  </center> -->
+  <input type="submit" value="submit">
+</form>
+</div>
+</div>
+</div>
