@@ -1,0 +1,245 @@
+html,body{
+    height: 100%;
+}
+
+ .navbar-default{
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border: 0;
+      border-radius: 0;
+      margin-bottom: 0;
+      font-size: 12px;
+      letter-spacing: 5px;
+      background-color:#724884;
+      border-color: #E7E7E7;   
+
+}
+.navbar-brand:focus, .navbar-brand:hover {
+    color: white;
+    background-color: transparent;
+}
+.navbar-default .navbar-brand {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a {
+    color: white;
+ 
+}
+ /*  .navbar-nav  li a:hover {
+      color: #1abc9c !important;
+  }
+ */
+	form {
+    border: 3px solid #f1f1f1;
+}
+
+/* input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+ */
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+.events{
+margin: 20px 10px;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+#mainC {
+   position: absolute;  
+   top: 80px;  
+   bottom: 0;  
+   left: 0;  
+   width: 100%;  
+   overflow: auto;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+.form-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+/*
+.btn-custom {
+	color: #FFF;
+	background-color: rgb(26, 188, 156);
+	border-color: rgb(26, 188, 156);
+	font-weight: 14px;
+}*/
+
+.btn-custom {
+	color: #FFF;
+	background-color: rgb(114, 72, 132);
+	border-color: rgb(114, 72, 132);
+	font-weight: 8px;
+}
+
+.modal1-open {
+  overflow: hidden;
+}
+
+.modal1 {
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+
+.modal1.fade .modal1-dialog {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  -o-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -moz-transition: -moz-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+
+.modal1.in .modal1-dialog {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  -o-transform: translate(0, 0);
+  transform: translate(0, 0);
+}
+
+.modal1-open .modal1 {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.modal1-dialog {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+
+.modal1-content {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+}
+
+.modal1-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+}
+
+.modal1-backdrop.fade {
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.modal1-backdrop.in {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+.modal1-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.modal1-header .close {
+  margin-top: -2px;
+}
+
+.modal1-title {
+  margin: 0;
+  line-height: 1.42857143;
+}
+
+.modal1-body {
+  position: relative;
+  padding: 15px;
+}
+
+.modal1-footer {
+  padding: 15px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+}
+
+.modal1-footer .btn + .btn {
+  margin-left: 5px;
+  margin-bottom: 0;
+}
+
+.modal1-footer .btn-group .btn + .btn {
+  margin-left: -1px;
+}
+
+.modal1-footer .btn-block + .btn-block {
+  margin-left: 0;
+}
+
+.modal1-scrollbar-measure {
+  position: absolute;
+  top: -9999px;
+  width: 50px;
+  height: 50px;
+  overflow: scroll;
+}
+
+#left {
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: auto;
+}
+
+.highcharts-container {
+    width:100% !important;
+    height:100% !important;
+}
